@@ -1,0 +1,19 @@
+{
+  "name": "calastore",
+  "version": "1.0.0",
+  "description": "Web Store",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iKennMarcucci/CalaStore.git"
+  },
+  "author": "Kenn Marcucci",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iKennMarcucci/CalaStore/issues"
+  },
+  "homepage": "https://github.com/iKennMarcucci/CalaStore#readme"
+}
