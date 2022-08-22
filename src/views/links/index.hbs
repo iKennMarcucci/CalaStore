@@ -1,0 +1,255 @@
+<!-- INICIO NAVBAR -->
+<header>
+    <div class="navbar navbar-expand-lg navbar-dark negro100">
+        <div class="container">
+            <a href="/links/index" class="navbar-brand">
+                <img src="/img/logos/CalaStoreLogo.png" alt="Cala Store" width="125"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+                aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarHeader">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-3">
+                        <a href="/links/index" class="nav-link active">Catálogo</a>
+                    </li>
+
+                    <li class="nav-item mx-3">
+                        <a href="#" class="nav-link">Contacto</a>
+                    </li>
+
+                    <li class="nav-item mx-3">
+                        <a href="#" class="nav-link">Acerca de</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <a href="/cart.html" class="btn btn-light"><b>Carrito</b></a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- FIN NAVBAR -->
+
+<!-- INICIO CATALOGO -->
+<div class="container mt-4 mb-2">
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-pills btn me-5 px-3" aria-current="page" href="#bodies">Bodys</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-pills btn me-5 px-3" aria-current="page" href="#croptops">Crop Tops</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-pills btn me-5 px-3" aria-current="page" href="#legsm">Leggings (S-M)</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-pills btn me-5 px-3" aria-current="page" href="#leglxl">Leggings (L-XL)</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-pills btn me-5 px-3" aria-current="page" href="#tops">Tops</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-pills btn me-5 px-3" aria-current="page" href="#conjuntos">Conjuntos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-pills btn me-5 px-3" aria-current="page" href="#blusas">Blusas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-pills btn px-3" aria-current="page" href="#enterizos">Enterizos</a>
+        </li>
+    </ul>
+</div>
+
+<!-- FIN CATALOGO -->
+
+<!-- INICIO PRODUCTOS -->
+<main>
+    <div class="container">
+        <h5 class="mx-5 fst-italic fw-semibold">
+            <b id="bodies">BODIES</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {{#each bodys}}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <center>
+                        <img src="/img/productos/Bodys/{{ img }}" width="300">
+                    </center>
+                    <div class="card-body">
+                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                        <p class="card-text text-secondary">${{ precio }}</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <br />
+        <h5 class="mx-5 mt-5 fst-italic fw-semibold">
+            <b id="croptops">CROP TOPS</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {{#each croptops}}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <center>
+                        <img src="/img/productos/CropTops/{{ img }}" width="300">
+                    </center>
+                    <div class="card-body">
+                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                        <p class="card-text text-secondary">${{ precio }}</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <br />
+        <h5 class="mx-5 mt-5 fst-italic fw-semibold">
+            <b id="legsm">LEGGINGS (S-M)</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {{#each leggingsSM}}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <center>
+                        <img src="/img/productos/LeggingsSM/{{ img }}" width="300">
+                    </center>
+                    <div class="card-body">
+                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                        <p class="card-text text-secondary">${{ precio }}</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <br />
+        <h5 class="mx-5 mt-5 fst-italic fw-semibold">
+            <b id="leglxl">LEGGINGS (L-XL)</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {{#each leggingsLXL}}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <center>
+                        <img src="/img/productos/LeggingsLXL/{{ img }}" width="300">
+                    </center>
+                    <div class="card-body">
+                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                        <p class="card-text text-secondary">${{ precio }}</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <br />
+        <h5 class="mx-5 mt-5 fst-italic fw-semibold">
+            <b id="tops">TOPS</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {{#each tops}}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <center>
+                        <img src="/img/productos/Tops/{{ img }}" width="300">
+                    </center>
+                    <div class="card-body">
+                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                        <p class="card-text text-secondary">${{ precio }}</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <br />
+        <h5 class="mx-5 mt-5 fst-italic fw-semibold">
+            <b id="conjuntos">CONJUNTOS</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {{#each conjuntos}}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <center>
+                        <img src="/img/productos/Conjuntos/{{ img }}" width="300">
+                    </center>
+                    <div class="card-body">
+                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                        <p class="card-text text-secondary">${{ precio }}</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <br />
+        <h5 class="mx-5 mt-5 fst-italic fw-semibold">
+            <b id="blusas">BLUSAS</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {{#each blusas}}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <center>
+                        <img src="/img/productos/Blusas/{{ img }}" width="300">
+                    </center>
+                    <div class="card-body">
+                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                        <p class="card-text text-secondary">${{ precio }}</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <br />
+        <h5 class="mx-5 mt-5 fst-italic fw-semibold">
+            <b id="enterizos">ENTERIZOS</b>
+        </h5>
+        <hr />
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {{#each enterizos}}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <center>
+                        <img src="/img/productos/Enterizos/{{ img }}" width="300">
+                    </center>
+                    <div class="card-body">
+                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                        <p class="card-text text-secondary">${{ precio }}</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</main>
+<!-- FIN PRODUCTOS -->
