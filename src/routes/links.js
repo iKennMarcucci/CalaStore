@@ -12,8 +12,11 @@ router.get('/index', async (req, res) =>{
     const conjuntos = await pool.query("SELECT nombre, FORMAT(p.precio, 'C', 'en-us') as precio, img FROM productos p WHERE id_categoria = 6");
     const blusas = await pool.query("SELECT nombre, FORMAT(p.precio, 'C', 'en-us') as precio, img FROM productos p WHERE id_categoria = 7");
     const enterizos = await pool.query("SELECT nombre, FORMAT(p.precio, 'C', 'en-us') as precio, img FROM productos p WHERE id_categoria = 8");
-    console.log(tops);
     res.render('links/index', { bodys, croptops, leggingsSM, leggingsLXL, tops, conjuntos, blusas, enterizos });
+});
+
+router.get('/cart', (req, res) =>{
+    res.render('links/cart');
 });
 
 module.exports = router;
