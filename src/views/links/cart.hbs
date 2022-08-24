@@ -1,2 +1,80 @@
-
-
+<div class="container py-4 d-flex align-items-center justify-content-center">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="mt-4">
+            <h1 class="fw-bold fst-italic">Carrito de Compras</h1>
+        </div>
+        {{#if bool}}
+        <div class="row">
+            <hr />
+            <br />
+            <div class="col-12 col-md-7">
+                <ul class="list-group list-group-lg list-group-flush-x mb-6">
+                    <li class="list-group-item border border-white">
+                        <div class="row align-items-center">
+                            {{#each arrayProductos}}
+                            <div class="card mb-2 ">
+                                <div class="row g-0">
+                                    <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                        <img src="{{linkimg}}" class="img-fluid border border-dark rounded-circle w-75">
+                                    </div>
+                                    <div class="col-md-8 d-flex align-items-center justify-content-center">
+                                        <div class="card-body">
+                                            <div class="d-flex mb-2">
+                                                <p class=" fw-bold fst-italic text-success text-decoration-none">
+                                                    {{nombre}}</p>
+                                                <span class="ms-auto fst-italic fw-semibold">${{precio}}</span>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <select class="form-select form-select-xxs w-auto">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                </select>
+                                                <a href="#"
+                                                    class="fs-xs text-gray-400 ms-auto mt-3 text-decoration-none">
+                                                    <p class=" fw-bold text-danger">Quitar &raquo;</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- END PRODUCTOS EN CARRITO -->
+            <div class="col-12 col-md-5 col-lg-4 offset-lg-1">
+                <div class="card mb-7 bg-light">
+                    <div class="card-body">
+                        <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
+                            <li class="list-group-item d-flex fs-lg fw-bold">
+                                <span>Total</span>
+                                <span class="ms-auto fs-sm">${{valor}}</span>
+                            </li>
+                            <hr />
+                            <div class="col-12 d-flex  align-items-center justify-content-center">
+                                <button type="submit"
+                                    class="btn btn-outline-primary btn-lg btn-block mx-3">Comprar</button>
+                                <button type="button" class="btn btn-outline-danger btn-lg btn-block mx-3"
+                                    onclick="location.href = '/'">Cancelar</button>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="alert alert-danger mt-5" role="alert">
+            <h4 class="fst-italic fw-semibold">No se han encontrado productos en tu carrito.</h4>
+        </div>
+        {{/if}}
+    </div>
+</div>

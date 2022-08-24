@@ -7,20 +7,27 @@
         <hr />
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {{#each bodys}}
-            <div class="col">
-                <div class="card shadow-none">
-                    <center>
-                        <img src="/img/productos/Bodys/{{ img }}" width="300">
-                    </center>
-                    <div class="card-body">
-                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
-                        <p class="card-text text-secondary">${{ precio }}</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+            <form action="/links/index" method="post">
+                <div class="col">
+                    <div class="card shadow-none">
+                        <center>
+                            <img src="/img/productos/Bodys/{{ img }}" width="300">
+                        </center>
+                        <div class="card-body">
+                            <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                            <p class="card-text text-secondary">${{ precio }}</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <input type="hidden" name="id" value="{{ id }}" />
+                                <input type="hidden" name="id_categoria" value="{{ id_categoria }}" />
+                                <input type="hidden" name="nombre" value="{{ nombre }}" />
+                                <input type="hidden" name="precio" value="{{ precio }}" />
+                                <input type="hidden" name="img" value="{{ img }}" />
+                                <button class="btn btn-lg btn-outline-danger">Agregar al Carrito</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             {{/each}}
         </div>
         <br />
@@ -30,20 +37,27 @@
         <hr />
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {{#each croptops}}
-            <div class="col">
-                <div class="card shadow-sm">
-                    <center>
-                        <img src="/img/productos/CropTops/{{ img }}" width="300">
-                    </center>
-                    <div class="card-body">
-                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
-                        <p class="card-text text-secondary">${{ precio }}</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+            <form action="/links/index" method="post">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <center>
+                            <img src="/img/productos/CropTops/{{ img }}" width="300">
+                        </center>
+                        <div class="card-body">
+                            <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                            <p class="card-text text-secondary">${{ precio }}</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <input type="hidden" name="id" value="{{ id }}" />
+                                <input type="hidden" name="id_categoria" value="{{ id_categoria }}" />
+                                <input type="hidden" name="nombre" value="{{ nombre }}" />
+                                <input type="hidden" name="precio" value="{{ precio }}" />
+                                <input type="hidden" name="img" value="{{ img }}" />
+                                <button class="btn btn-lg btn-outline-danger">Agregar al Carrito</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             {{/each}}
         </div>
         <br />
@@ -53,20 +67,27 @@
         <hr />
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {{#each leggingsSM}}
-            <div class="col">
-                <div class="card shadow-sm">
-                    <center>
-                        <img src="/img/productos/LeggingsSM/{{ img }}" width="300">
-                    </center>
-                    <div class="card-body">
-                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
-                        <p class="card-text text-secondary">${{ precio }}</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+            <form action="/links/index" method="post">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <center>
+                            <img src="/img/productos/LeggingsSM/{{ img }}" width="300">
+                        </center>
+                        <div class="card-body">
+                            <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                            <p class="card-text text-secondary">${{ precio }}</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <input type="hidden" name="id" value="{{ id }}" />
+                                <input type="hidden" name="id_categoria" value="{{ id_categoria }}" />
+                                <input type="hidden" name="nombre" value="{{ nombre }}" />
+                                <input type="hidden" name="precio" value="{{ precio }}" />
+                                <input type="hidden" name="img" value="{{ img }}" />
+                                <button class="btn btn-lg btn-outline-danger">Agregar al Carrito</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             {{/each}}
         </div>
         <br />
@@ -76,20 +97,27 @@
         <hr />
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {{#each leggingsLXL}}
-            <div class="col">
-                <div class="card shadow-sm">
-                    <center>
-                        <img src="/img/productos/LeggingsLXL/{{ img }}" width="300">
-                    </center>
-                    <div class="card-body">
-                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
-                        <p class="card-text text-secondary">${{ precio }}</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+            <form action="/links/index" method="post">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <center>
+                            <img src="/img/productos/LeggingsLXL/{{ img }}" width="300">
+                        </center>
+                        <div class="card-body">
+                            <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                            <p class="card-text text-secondary">${{ precio }}</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <input type="hidden" name="id" value="{{ id }}" />
+                                <input type="hidden" name="id_categoria" value="{{ id_categoria }}" />
+                                <input type="hidden" name="nombre" value="{{ nombre }}" />
+                                <input type="hidden" name="precio" value="{{ precio }}" />
+                                <input type="hidden" name="img" value="{{ img }}" />
+                                <button class="btn btn-lg btn-outline-danger">Agregar al Carrito</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             {{/each}}
         </div>
         <br />
@@ -99,20 +127,27 @@
         <hr />
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {{#each tops}}
-            <div class="col">
-                <div class="card shadow-sm">
-                    <center>
-                        <img src="/img/productos/Tops/{{ img }}" width="300">
-                    </center>
-                    <div class="card-body">
-                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
-                        <p class="card-text text-secondary">${{ precio }}</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+            <form action="/links/index" method="post">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <center>
+                            <img src="/img/productos/Tops/{{ img }}" width="300">
+                        </center>
+                        <div class="card-body">
+                            <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                            <p class="card-text text-secondary">${{ precio }}</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <input type="hidden" name="id" value="{{ id }}" />
+                                <input type="hidden" name="id_categoria" value="{{ id_categoria }}" />
+                                <input type="hidden" name="nombre" value="{{ nombre }}" />
+                                <input type="hidden" name="precio" value="{{ precio }}" />
+                                <input type="hidden" name="img" value="{{ img }}" />
+                                <button class="btn btn-lg btn-outline-danger">Agregar al Carrito</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             {{/each}}
         </div>
         <br />
@@ -122,20 +157,27 @@
         <hr />
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {{#each conjuntos}}
-            <div class="col">
-                <div class="card shadow-sm">
-                    <center>
-                        <img src="/img/productos/Conjuntos/{{ img }}" width="300">
-                    </center>
-                    <div class="card-body">
-                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
-                        <p class="card-text text-secondary">${{ precio }}</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+            <form action="/links/index" method="post">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <center>
+                            <img src="/img/productos/Conjuntos/{{ img }}" width="300">
+                        </center>
+                        <div class="card-body">
+                            <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                            <p class="card-text text-secondary">${{ precio }}</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <input type="hidden" name="id" value="{{ id }}" />
+                                <input type="hidden" name="id_categoria" value="{{ id_categoria }}" />
+                                <input type="hidden" name="nombre" value="{{ nombre }}" />
+                                <input type="hidden" name="precio" value="{{ precio }}" />
+                                <input type="hidden" name="img" value="{{ img }}" />
+                                <button class="btn btn-lg btn-outline-danger">Agregar al Carrito</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             {{/each}}
         </div>
         <br />
@@ -145,20 +187,27 @@
         <hr />
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {{#each blusas}}
-            <div class="col">
-                <div class="card shadow-sm">
-                    <center>
-                        <img src="/img/productos/Blusas/{{ img }}" width="300">
-                    </center>
-                    <div class="card-body">
-                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
-                        <p class="card-text text-secondary">${{ precio }}</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+            <form action="/links/index" method="post">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <center>
+                            <img src="/img/productos/Blusas/{{ img }}" width="300">
+                        </center>
+                        <div class="card-body">
+                            <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                            <p class="card-text text-secondary">${{ precio }}</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <input type="hidden" name="id" value="{{ id }}" />
+                                <input type="hidden" name="id_categoria" value="{{ id_categoria }}" />
+                                <input type="hidden" name="nombre" value="{{ nombre }}" />
+                                <input type="hidden" name="precio" value="{{ precio }}" />
+                                <input type="hidden" name="img" value="{{ img }}" />
+                                <button class="btn btn-lg btn-outline-danger">Agregar al Carrito</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             {{/each}}
         </div>
         <br />
@@ -168,20 +217,27 @@
         <hr />
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {{#each enterizos}}
-            <div class="col">
-                <div class="card shadow-sm">
-                    <center>
-                        <img src="/img/productos/Enterizos/{{ img }}" width="300">
-                    </center>
-                    <div class="card-body">
-                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
-                        <p class="card-text text-secondary">${{ precio }}</p>
-                        <div class="d-flex justify-content-center align-items-center">
-                            <a href="#" class="btn btn-lg btn-outline-danger">Agregar al Carrito</a>
+            <form action="/links/index" method="post">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <center>
+                            <img src="/img/productos/Enterizos/{{ img }}" width="300">
+                        </center>
+                        <div class="card-body">
+                            <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                            <p class="card-text text-secondary">${{ precio }}</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <input type="hidden" name="id" value="{{ id }}" />
+                                <input type="hidden" name="id_categoria" value="{{ id_categoria }}" />
+                                <input type="hidden" name="nombre" value="{{ nombre }}" />
+                                <input type="hidden" name="precio" value="{{ precio }}" />
+                                <input type="hidden" name="img" value="{{ img }}" />
+                                <button class="btn btn-lg btn-outline-danger">Agregar al Carrito</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             {{/each}}
         </div>
     </div>
