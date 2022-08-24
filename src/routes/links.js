@@ -4,14 +4,14 @@ const pool = require('../database');
 const arrayProductos = [];
 
 router.get('/index', async (req, res) => {
-    const bodys = await pool.query("SELECT id, id_categoria, nombre, precio, img FROM productos p WHERE id_categoria = 1");
-    const croptops = await pool.query("SELECT id, id_categoria, nombre, precio, img FROM productos p WHERE id_categoria = 2");
-    const leggingsSM = await pool.query("SELECT id, id_categoria, nombre, precio, img FROM productos p WHERE id_categoria = 3");
-    const leggingsLXL = await pool.query("SELECT id, id_categoria, nombre, precio, img FROM productos p WHERE id_categoria = 4");
-    const tops = await pool.query("SELECT id, id_categoria, nombre, precio, img FROM productos p WHERE id_categoria = 5");
-    const conjuntos = await pool.query("SELECT id, id_categoria, nombre, precio, img FROM productos p WHERE id_categoria = 6");
-    const blusas = await pool.query("SELECT id, id_categoria, nombre, precio, img FROM productos p WHERE id_categoria = 7");
-    const enterizos = await pool.query("SELECT id, id_categoria, nombre, precio, img FROM productos p WHERE id_categoria = 8");
+    const bodys = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 1");
+    const croptops = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 2");
+    const leggingsSM = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 3");
+    const leggingsLXL = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 4");
+    const tops = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 5");
+    const conjuntos = await pool.query("SELECT id, id_categoria, nombre, precio, FORMAT(p.precio,'C3') AS img FROM productos p WHERE id_categoria = 6");
+    const blusas = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 7");
+    const enterizos = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 8");
 
     res.render('links/index', { bodys, croptops, leggingsSM, leggingsLXL, tops, conjuntos, blusas, enterizos });
 });
@@ -86,7 +86,7 @@ router.get('/cart', async (req, res) => {
                 }
             }
             total = total + parseInt(arrayProductos[i].precio);
-            valor = total.toLocaleString("en");
+            valor = total.toLocaleString("en") + ",000";
         }
         res.render('links/cart', { arrayProductos, bool, valor });
     } else {
