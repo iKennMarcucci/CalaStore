@@ -75,27 +75,24 @@ router.post('/index', async (req, res) => {
 router.post('/cart', (req, res) => {
     var bool = true;
     var total = 0;
-    for (let i = 0; i < arrayProductos.length && bool; i++) {
+    var total2 = 0;
+    for (let i = 0; i < arrayProductos.length; i++) {
         if (arrayProductos[i].nombre != req.body.nombre) {
             total = total + parseInt(arrayProductos[i].precio);
         } else {
             resta = parseInt(arrayProductos[i].precio);
             arrayProductos.splice(i, 1);
-            if (arrayProductos.length == 0) {
-                bool = false;
-            }
         }
-        // if (arrayProductos.length != 0) {
-        //     console.log("arrayProductos(precio) --> " + arrayProductos[i].precio);
-        //     console.log("arrayProductos(length) --> " + arrayProductos.length);
-        //     console.log(arrayProductos);
-        //     total = total + parseInt(arrayProductos[i].precio);
-        // }
     }
-    valor = total.toLocaleString("en") + ",000";
-    if (bool) {
+    
+    for (let i = 0; i < arrayProductos.length; i++) {
+        total2 = total2 + parseInt(arrayProductos[i].precio);
+    }
+    valor = total2.toLocaleString("en") + ",000";
+    if (arrayProductos.length != 0) {
         res.render('links/cart', { arrayProductos, bool, valor });
     } else {
+        bool = false;
         res.render('links/cart', { bool });
     }
 });
