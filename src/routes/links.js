@@ -67,11 +67,37 @@ router.post('/index', async (req, res) => {
         img,
         linkimg: "none"
     };
+    console.log(newProducto);
     arrayProductos.push(newProducto);
     res.redirect('/links/index');
 });
 
-router.get('/cart', async (req, res) => {
+router.post('/cart', (req, res) => {
+    var bool = true;
+    var total = 0;
+    for (let i = 0; i < arrayProductos.length; i++) {
+        if (arrayProductos[i].nombre == req.body.nombre) {
+            resta = parseInt(arrayProductos[i].precio);
+            arrayProductos.splice(i, 1);
+            if (arrayProductos.length == 0) {
+                bool = false;
+            }
+        }
+        if (arrayProductos.length != 0) {
+            console.log("arrayProductos(precio) --> " + arrayProductos[i].precio);
+            console.log("arrayProductos(length) --> " + arrayProductos.length);
+            total = total + parseInt(arrayProductos[i].precio);
+        }
+    }
+    valor = total.toLocaleString("en") + ",000";
+    if (bool) {
+        res.render('links/cart', { arrayProductos, bool, valor });
+    } else {
+        res.render('links/cart', { bool });
+    }
+});
+
+router.get('/cart', (req, res) => {
     var bool = false;
     var total = 0;
     if (arrayProductos.length >= 1) {
@@ -134,13 +160,4 @@ router.get('/cart', async (req, res) => {
     }
 });
 
-router.post('/cart', async (req, res) => {
-    for (let i = 0; i < arrayProductos.length; i++) {
-        if (arrayProductos[i].nombre === req.body.nombre) {
-            arrayProductos.splice(i, 1);
-            break;
-        }
-    }
-    res.render('links/cart', { arrayProductos });
-});
 module.exports = router;
