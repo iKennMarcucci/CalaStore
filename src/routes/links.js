@@ -1,7 +1,47 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../database');
-const arrayProductos = [];
+let arrayProductos = [];
+
+router.get('/bodies', async (req, res) => {
+    const bodys = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 1");
+    res.render('links/bodies', { bodys });
+});
+
+router.get('/croptops', async (req, res) => {
+    const croptops = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 2");
+    res.render('links/croptops', { croptops });
+});
+
+router.get('/legsm', async (req, res) => {
+    const leggingsSM = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 3");
+    res.render('links/legsm', { leggingsSM });
+});
+
+router.get('/leglxl', async (req, res) => {
+    const leggingsLXL = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 4");
+    res.render('links/leglxl', { leggingsLXL });
+});
+
+router.get('/tops', async (req, res) => {
+    const tops = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 5");
+    res.render('links/tops', { tops });
+});
+
+router.get('/sets', async (req, res) => {
+    const conjuntos = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 6");
+    res.render('links/sets', { conjuntos });
+});
+
+router.get('/blusas', async (req, res) => {
+    const blusas = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 7");
+    res.render('links/blusas', { blusas });
+});
+
+router.get('/enterizos', async (req, res) => {
+    const enterizos = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 8");
+    res.render('links/enterizos', { enterizos });
+});
 
 router.get('/index', async (req, res) => {
     const bodys = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 1");
@@ -9,7 +49,7 @@ router.get('/index', async (req, res) => {
     const leggingsSM = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 3");
     const leggingsLXL = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 4");
     const tops = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 5");
-    const conjuntos = await pool.query("SELECT id, id_categoria, nombre, precio, FORMAT(p.precio,'C3') AS img FROM productos p WHERE id_categoria = 6");
+    const conjuntos = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 6");
     const blusas = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 7");
     const enterizos = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 8");
 
@@ -94,4 +134,13 @@ router.get('/cart', async (req, res) => {
     }
 });
 
+router.post('/cart', async (req, res) => {
+    for (let i = 0; i < arrayProductos.length; i++) {
+        if (arrayProductos[i].nombre === req.body.nombre) {
+            arrayProductos.splice(i, 1);
+            break;
+        }
+    }
+    res.render('links/cart', { arrayProductos });
+});
 module.exports = router;

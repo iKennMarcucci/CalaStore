@@ -1,0 +1,31 @@
+<div class="container my-4">
+    <h5 class="mx-5 fst-italic fw-semibold">
+        <b id="tops">TOPS</b>
+    </h5>
+    <hr />
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {{#each tops}}
+        <form action="/links/index" method="post">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <center class="px-3 py-3">
+                        <img src="/img/productos/Tops/{{ img }}" width="100%">
+                    </center>
+                    <div class="card-body">
+                        <h4 class="card-title fst-italic">{{ nombre }}</h4>
+                        <p class="card-text text-secondary">$ {{ precio }}</p>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="hidden" name="id" value="{{ id }}" />
+                            <input type="hidden" name="id_categoria" value="{{ id_categoria }}" />
+                            <input type="hidden" name="nombre" value="{{ nombre }}" />
+                            <input type="hidden" name="precio" value="{{ precio }}" />
+                            <input type="hidden" name="img" value="{{ img }}" />
+                            <button class="btn btn-lg btn-outline-danger">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        {{/each}}
+    </div>
+</div>
