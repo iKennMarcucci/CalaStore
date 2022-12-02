@@ -41,4 +41,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.listen(app.get('port'), () => {
     console.log('Server on port', app.get('port'));
     console.log("http://localhost:4000/links/index");
+    console.log("http://localhost:4000/admin");
 });

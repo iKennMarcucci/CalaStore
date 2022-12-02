@@ -10,11 +10,13 @@ router.get('/bodies', async (req, res) => {
 
 router.get('/croptops', async (req, res) => {
     const croptops = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 2");
+
     res.render('links/croptops', { croptops });
 });
 
 router.get('/legsm', async (req, res) => {
     const leggingsSM = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 3");
+
     res.render('links/legsm', { leggingsSM });
 });
 
@@ -82,6 +84,7 @@ router.post('/index', async (req, res) => {
     } else {
         arrayProductos.push(newProducto);
     }
+
     res.redirect('/links/index');
 });
 
@@ -110,6 +113,7 @@ router.post('/cart', (req, res) => {
 router.get('/cart', (req, res) => {
     var bool = false;
     var total = 0;
+
     if (arrayProductos.length >= 1) {
         bool = true;
         for (let i = 0; i < arrayProductos.length; i++) {
@@ -162,7 +166,7 @@ router.get('/cart', (req, res) => {
                 }
             }
             total = total + parseInt(arrayProductos[i].precio);
-            
+
             valor = total.toLocaleString("en") + ",000";
         }
         res.render('links/cart', { arrayProductos, bool, valor });
@@ -170,10 +174,5 @@ router.get('/cart', (req, res) => {
         res.render('links/cart', { bool });
     }
 });
-
-function cancelarCarrito() {
-    arrayProductos.length = arrayProductos.length - arrayProductos.length;
-    location.reload();
-}
 
 module.exports = router;

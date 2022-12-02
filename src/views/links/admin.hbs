@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/logos/Logo.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="/css/estilos.css" rel="stylesheet">
+    <title>Admin Access</title>
+</head>
+
+<body>
+    <header>
+        <div class="navbar navbar-expand-lg navbar-dark negro100">
+            <div class="container justify-content-center my-4">
+                <h3 class="font-monospace text-white fs-1">
+                    Admin Access
+                </h3>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container text-center my-3">
+            {{#if fallo}}
+            <div class="alert alert-danger text-center">Username or Password Incorrect.</div>
+            {{/if}}
+            <div class="row">
+                <div class="col order-first justify-content-center mt-5">
+                    <form action="/links/admin" class="mx-5 px-5" method="post">
+                        <h1 class="text-primary display-1 fw-bolder my-4">Log in</h1>
+                        <div class="form-floating text-start my-3">
+                            <input type="password" name="username" class="form-control" id="floatingInput"
+                                placeholder="Username" required>
+                            <label for="floatingInput" aria-disabled="true">Username</label>
+                        </div>
+                        <div class="form-floating text-start">
+                            <input type="password" name="password" class="form-control" id="floatingPassword"
+                                placeholder="Password" required>
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                        <div class="my-4">
+                            <button type="submit" class="btn btn-lg px-5 btn-outline-primary fw-bold"
+                                onclick="">Continuar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col order-last">
+                    <img src="/img/icons/access.png">
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

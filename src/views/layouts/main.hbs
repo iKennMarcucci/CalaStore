@@ -13,7 +13,9 @@
 </head>
 
 <body>
-    {{> navbar }}
+    {{#unless index}}
+        {{> navbar }}
+    {{/unless}}
 
     {{{ body }}}
 
