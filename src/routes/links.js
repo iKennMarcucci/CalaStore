@@ -67,28 +67,38 @@ router.post('/index', async (req, res) => {
         img,
         linkimg: "none"
     };
-    console.log(newProducto);
-    arrayProductos.push(newProducto);
+    var esta = false;
+    for (let index = 0; index < arrayProductos.length; index++) {
+        const element = arrayProductos[index];
+        if (newProducto.id == element.id) {
+            esta = true;
+            break;
+        }
+    }
+    if (arrayProductos.length > 0) {
+        if (!esta) {
+            arrayProductos.push(newProducto);
+        }
+    } else {
+        arrayProductos.push(newProducto);
+    }
     res.redirect('/links/index');
 });
 
 router.post('/cart', (req, res) => {
     var bool = true;
     var total = 0;
-    var total2 = 0;
     for (let i = 0; i < arrayProductos.length; i++) {
-        if (arrayProductos[i].nombre != req.body.nombre) {
-            total = total + parseInt(arrayProductos[i].precio);
-        } else {
+        if (arrayProductos[i].nombre == req.body.nombre) {
             resta = parseInt(arrayProductos[i].precio);
             arrayProductos.splice(i, 1);
         }
     }
-    
+
     for (let i = 0; i < arrayProductos.length; i++) {
-        total2 = total2 + parseInt(arrayProductos[i].precio);
+        total = total + parseInt(arrayProductos[i].precio);
     }
-    valor = total2.toLocaleString("en") + ",000";
+    valor = total.toLocaleString("en") + ",000";
     if (arrayProductos.length != 0) {
         res.render('links/cart', { arrayProductos, bool, valor });
     } else {
