@@ -27,17 +27,16 @@
                                                     <span class="ms-auto fst-italic fw-semibold">$ {{precio}}</span>
                                                 </div>
                                                 <div class="d-flex align-items-center">
-                                                    <select class="form-select form-select-xxs w-auto">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                    </select>
+                                                    <div class="btn-group btn-group-sm" role="group"
+                                                        aria-label="Small button group">
+                                                        <div class="counter">
+                                                            <span class="down"
+                                                                onClick='decreaseCount(event, this)'>-</span>
+                                                            <input type="text" value="1">
+                                                            <span class="up"
+                                                                onClick='increaseCount(event, this)'>+</span>
+                                                        </div>
+                                                    </div>
                                                     <input type="hidden" name="nombre" value="{{ nombre }}" />
                                                     <button
                                                         class="fs-xs text-gray-400 ms-auto mt-3 text-decoration-none bg-light border border-0">
@@ -61,7 +60,7 @@
                         <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
                             <li class="list-group-item d-flex fs-lg fw-bold">
                                 <span>Total</span>
-                                <span class="ms-auto fs-sm">$ {{valor}}</span>
+                                <span class="ms-auto fs-sm">$ {{ valor }}</span>
                             </li>
                             <hr />
                             <div class="col-12 d-flex  align-items-center justify-content-center">
@@ -82,3 +81,4 @@
         {{/if}}
     </div>
 </div>
+<script src="/js/boton.js"></script>

@@ -162,6 +162,7 @@ router.get('/cart', (req, res) => {
                 }
             }
             total = total + parseInt(arrayProductos[i].precio);
+            
             valor = total.toLocaleString("en") + ",000";
         }
         res.render('links/cart', { arrayProductos, bool, valor });
