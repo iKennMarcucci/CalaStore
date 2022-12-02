@@ -171,4 +171,9 @@ router.get('/cart', (req, res) => {
     }
 });
 
+function cancelarCarrito() {
+    arrayProductos.length = arrayProductos.length - arrayProductos.length;
+    location.reload();
+}
+
 module.exports = router;
