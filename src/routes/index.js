@@ -11,9 +11,28 @@ router.post('/links/admin', async (req, res) => {
     const { username, password } = req.body;
     try {
         const admin = await pool.query("SELECT * FROM administrador WHERE password = '" + password + "' AND username = '" + username + "'");
-        console.log(admin);
         if (admin.length > 0) {
-            res.send("logueado.");
+            var index = true;
+            const IDPedidos = await pool.query("SELECT DISTINCT id_pedido FROM pedidos");
+            var fijos = [];
+            for (let i = 0; i < IDPedidos.length; i++) {
+                var id = IDPedidos[i].id_pedido;
+                fijos[i] = await pool.query("SELECT id_pedido, cedula_cliente, telefono_cliente, direccion FROM pedidos WHERE id_pedido = " + id + " GROUP BY id_pedido");
+            }
+            var productos = [];
+            for (let i = 0; i < fijos.length; i++) {
+                var id = IDPedidos[i].id_pedido;
+                productos[i] = await pool.query("SELECT p.nombre as nombre , o.cantidad_productos as cantidad, o.precio * o.cantidad_productos as total FROM productos p, pedidos o WHERE o.id_pedido = " + id + " and p.id = o.id_producto");
+            }
+
+
+
+
+
+
+
+
+            res.render('links/admin/adminaccess', { index, fijos, productos });
         } else {
             var index = true;
             const fallo = true;
@@ -25,6 +44,9 @@ router.post('/links/admin', async (req, res) => {
     }
 });
 
-
+router.get('/links/admin/adminaccess', (req, res) => {
+    var index = true;
+    res.render('links/admin', { index });
+});
 
 module.exports = router;
