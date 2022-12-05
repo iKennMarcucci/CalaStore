@@ -56,21 +56,21 @@
                 </div>
                 <div class="col border border-dark">
                     <h1 class="display-5 fw-bolder my-5"> Productos </h1>
-                    <form action="">
+                    <form action="/links/admin/adminaccess" method="post">
                         <div class="form-floating text-start my-3">
-                            <input type="text" name="username" class="form-control" id="floatingInput"
-                                placeholder="Username" autocomplete="off" required>
-                            <label for="floatingInput" aria-disabled="true">Nombre del Producto</label>
+                            <input type="text" name="name" class="form-control" id="floatinInput" placeholder="Username"
+                                autocomplete="off" required>
+                            <label for="floatinInput" aria-disabled="true">Nombre del Producto</label>
                         </div>
-                        <select class="form-select form-select-lg fs-6" id="selectInput"
-                            aria-label="Default select example">
+                        <select class="form-select form-select-lg fs-6" name="id" id="selectInput"
+                            aria-label="Default select example" required>
                             <option selected hidden>Categoría</option>
                             {{#each categoria}}
-                            <option value="{{1}}">{{cateogias}}</option>
+                            <option value="{{id_categoria}}">{{nombre_categoria}}</option>
                             {{/each}}
                         </select>
                         <div class="form-floating text-start my-3">
-                            <input type="text" name="username" class="form-control" id="floatingInput" placeholder="$ "
+                            <input type="text" name="presio" class="form-control" id="floatingInput" placeholder="$ "
                                 autocomplete="off" required>
                             <label for="floatingInput" aria-disabled="true">Precio</label>
                         </div>
@@ -78,22 +78,70 @@
                             <label class="form-label">Imagen</label>
                         </div>
                         <div class="mb-3">
-                            <input class="form-control" type="file" id="formFile">
+                            <input class="form-control" type="file" name="imagen" id="formFile" required>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-lg px-5 btn-outline-dark fw-bold" type="button">Agregar</button>
+                            <button class="btn btn-lg px-5 btn-outline-dark fw-bold" type="submit">Agregar</button>
                         </div>
                     </form>
-                    <form action="">
-                        <select class="form-select form-select-lg fs-6 mt-5 mb-3" id="selectInput"
+                    <form action="productos" method="post">
+                        <select class="form-select form-select-lg fs-6 mt-5 mb-3" name="selectInput" id="selectInput"
                             aria-label="Default select example">
                             <option selected hidden>Producto</option>
-                            <option value="1">ELEMENTO1</option>
-                            <option value="2">ELEMENTO2</option>
+                            {{#each listaProducto}}
+                            <option value="{{id}}">{{id}}. {{nombre}}</option>
+                            {{/each}}
                         </select>
                         <div class="my-3">
-                            <button type="button" class="btn btn-dark btn-lg">Editar</button>
-                            <button type="button" class="btn btn-danger btn-lg">Borrar</button>
+                            <input type="submit" name="editar" class="btn btn-dark btn-lg" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop" value="Editar"></input>
+                            <div class="modal fade" id="staticBackdrop" tabindex="-1"
+                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Producto</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        {{!-- {{#if productoAEditar}}
+                                        <div class="modal-body">
+                                            <div class="form-floating text-start my-3">
+                                                <input type="text" name="name" class="form-control" id="floatinInput"
+                                                    placeholder="Username" autocomplete="off" required>
+                                                <label for="floatinInput" aria-disabled="true">{{ nombre }}</label>
+                                            </div>
+                                            <select class="form-select form-select-lg fs-6" name="id" id="selectInput"
+                                                aria-label="Default select example" required>
+                                                <option selected hidden>Categoría = {{ id_categoria }}</option>
+                                                {{#each categoria}}
+                                                <option value="{{id_categoria}}">{{nombre_categoria}}</option>
+                                                {{/each}}
+                                            </select>
+                                            <div class="form-floating text-start my-3">
+                                                <input type="text" name="presio" class="form-control" id="floatingInput"
+                                                    placeholder="$ " autocomplete="off" required>
+                                                <label for="floatingInput" aria-disabled="true">{{ precio }}</label>
+                                            </div>
+                                            <div class="text-center ms-2">
+                                                <label class="form-label">Imagen</label>
+                                            </div>
+                                            <div class="mb-3">
+                                                <input class="form-control" type="file" name="imagen" id="formFile"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        {{/if}} --}}
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-primary">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" id="borrar" name="borrar" class="btn btn-danger btn-lg"
+                                value="Borrar"></input>
                         </div>
                     </form>
                 </div>
@@ -169,6 +217,7 @@
             </div>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>

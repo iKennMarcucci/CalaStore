@@ -32,7 +32,7 @@
                                                         <div class="counter">
                                                             <span class="down"
                                                                 onClick='decreaseCount(event, this)'>-</span>
-                                                            <input type="text" value="1">
+                                                            <input  class="multiply" type="text" value="1" disabled>
                                                             <span class="up"
                                                                 onClick='increaseCount(event, this)'>+</span>
                                                         </div>
@@ -64,8 +64,78 @@
                             </li>
                             <hr />
                             <div class="col-12 d-flex  align-items-center justify-content-center">
-                                <button type="submit"
-                                    class="btn btn-outline-dark btn-lg btn-block mx-3">Comprar</button>
+                                <button type="button" class="btn btn-lg btn-dark" data-bs-toggle="modal"
+                                    data-bs-target="#Modal">
+                                    Comprar
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable">
+                                        <div class="modal-content">
+                                            <div class="modal-header text-center">
+                                                <h1 class="modal-title fs-5" id="ModalLabel">Rellena El Formulario
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <form action="comprar" method="post">
+                                                <div class="modal-body">
+                                                    <div class="text-start my-3">
+                                                        <select class="form-select form-select-lg mb-3 fs-6" name="tipo"
+                                                            aria-label="Default select example" required>
+                                                            <option selected hidden>Tipo de Identificación</option>
+                                                            <option value="C.C.">Cédula de Ciudadanía</option>
+                                                            <option value="T.I.">Tarjeta de Identidad</option>
+                                                            <option value="C.E">Cédula de Extranjería</option>
+                                                            <option value="T.E">Tarjeta de Extranjería</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-floating text-start my-3">
+                                                        <input type="number" name="cedula" class="form-control"
+                                                            id="floatingInput" autocomplete="off" required>
+                                                        <label for="floatingInput" aria-disabled="true">Número de
+                                                            Identificación</label>
+                                                    </div>
+                                                    <div class="form-floating text-start my-3">
+                                                        <input type="text" name="nombre" class="form-control"
+                                                            id="floatingInput" autocomplete="off" required>
+                                                        <label for="floatingInput" aria-disabled="true">Nombre</label>
+                                                    </div>
+                                                    <div class="form-floating text-start my-3">
+                                                        <input type="text" name="apellido" class="form-control"
+                                                            id="floatingInput" autocomplete="off" required>
+                                                        <label for="floatingInput" aria-disabled="true">Apellido</label>
+                                                    </div>
+                                                    <div class="form-floating text-start my-3">
+                                                        <input type="email" name="email" class="form-control"
+                                                            id="floatingInput" autocomplete="off" required>
+                                                        <label for="floatingInput" aria-disabled="true">Email</label>
+                                                    </div>
+                                                    <div class="form-floating text-start my-3">
+                                                        <input type="number" name="telefono" class="form-control"
+                                                            id="floatingInput" autocomplete="off" required>
+                                                        <label for="floatingInput" aria-disabled="true">Número de
+                                                            Teléfono</label>
+                                                    </div>
+                                                    <div class="form-floating text-start my-3">
+                                                        <input type="text" name="direccion" class="form-control"
+                                                            id="floatingInput" autocomplete="off" required>
+                                                        <label for="floatingInput"
+                                                            aria-disabled="true">Dirección</label>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-lg btn-outline-danger"
+                                                        data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="submit"
+                                                        class="btn btn-lg btn-outline-dark">Comprar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </ul>
                     </div>
