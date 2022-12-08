@@ -22,6 +22,10 @@ router.get('/admin', (req, res) => {
     res.render('links/admin', { index });
 });
 
+router.get('/', (req, res) => {
+    res.render('links/index');
+});
+
 router.post('/links/agregar', async (req, res) => {
     var index = true;
     const { name, id, presio, imagen } = req.body;
