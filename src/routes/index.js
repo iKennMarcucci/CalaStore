@@ -156,10 +156,7 @@ router.post('/links/eliminarCategoria', async (req, res) => {
     } catch (error) {
         var eligeCategoria = false;
         var productosConCatg = false;
-        console.log(error.code);
-        console.log(error);
         if (error.code === 'ER_ROW_IS_REFERENCED_2') {
-            console.log(error);
             productosConCatg = true;
         } else if (error.code === 'ER_PARSE_ERROR') {
             eligeCategoria = true;
@@ -168,6 +165,7 @@ router.post('/links/eliminarCategoria', async (req, res) => {
         res.render('links/admin/adminaccess', { index, fijos, productos, categoria, listaProducto, eligeCategoria, productosConCatg });
     }
 });
+
 router.get('/links/admin/adminaccess', (req, res) => {
     var index = true;
     res.render('links/admin', { index });
