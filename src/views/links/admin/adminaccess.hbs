@@ -22,35 +22,58 @@
             </div>
         </div>
     </header>
+    {{#if equivocado}}
+    <center class="mx-5">
+        <div class="alert alert-danger alert-dismissible fade show mx-5 px-5" role="alert">
+            <strong>ERROR:</strong> Categoría ya existente.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </center>
+    {{/if}}
     <main>
         <div class="container text-center my-3">
             <div class="row">
                 <div class="col border border-dark">
                     <h1 class="display-5 fw-bolder my-5"> Categorías </h1>
-                    <form action="">
+                    <form action="agregarCategoria" method="post">
                         <div class="form-floating text-start my-3">
-                            <input type="text" name="username" class="form-control" id="floatingInput" placeholder="$ "
+                            <input type="text" name="categoria" class="form-control" id="floatinInput" placeholder="Categoria"
                                 autocomplete="off" required>
-                            <label for="floatingInput" aria-disabled="true">Agregar Categoría</label>
+                            <label for="floatinInput" aria-disabled="true">Agregar Categoria</label>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto mb-5">
-                            <button class="btn btn-lg px-5 btn-outline-dark fw-bold" type="button">Agregar</button>
+                            <button class="btn btn-lg px-5 btn-outline-dark fw-bold" type="submit">Agregar</button>
                         </div>
-                        <div class="form-floating text-start my-3">
-                            <input type="text" name="username" class="form-control" id="floatingInput" placeholder="$ "
-                                autocomplete="off" required>
-                            <label for="floatingInput" aria-disabled="true">Editar Categoría</label>
+                    </form>
+                    <form action="eliminarCategoria" method="post">
+                        <div class="text-start my-3">
+                            {{#if eligeCategoria}}
+                            <center>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>ERROR:</strong> Elige una categoria.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            </center>
+                            {{/if}}
+                            {{#if productosConCatg}}
+                            <center>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>ERROR:</strong> Existen productos con esa categoria.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            </center>
+                            {{/if}}
+                            <select class="form-select form-select-lg fs-6" name="id_categoria" required>
+                                <option selected hidden>Eliminar Categoría</option>
+                                {{#each categoria}}
+                                <option value="{{id_categoria}}">{{nombre_categoria}}</option>
+                                {{/each}}
+                            </select>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto mb-5">
-                            <button class="btn btn-lg px-5 btn-outline-dark fw-bold" type="button">Editar</button>
-                        </div>
-                        <div class="form-floating text-start my-3">
-                            <input type="text" name="username" class="form-control" id="floatingInput" placeholder="$ "
-                                autocomplete="off" required>
-                            <label for="floatingInput" aria-disabled="true">Eliminar Categoría</label>
-                        </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button class="btn btn-lg px-5 btn-outline-danger fw-bold" type="button">Eliminar</button>
+                            <button class="btn btn-lg px-5 btn-outline-danger fw-bold" type="submit">Eliminar</button>
                         </div>
                     </form>
                 </div>
@@ -93,7 +116,7 @@
                             {{/each}}
                         </select>
                         <div class="my-3">
-                            <input type="submit" name="editar" class="btn btn-dark btn-lg" data-bs-toggle="modal"
+                            <input type="button" name="editar" class="btn btn-dark btn-lg" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop" value="Editar"></input>
                             <div class="modal fade" id="staticBackdrop" tabindex="-1"
                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -104,38 +127,34 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        {{!-- {{#if productoAEditar}}
                                         <div class="modal-body">
                                             <div class="form-floating text-start my-3">
                                                 <input type="text" name="name" class="form-control" id="floatinInput"
-                                                    placeholder="Username" autocomplete="off" required>
-                                                <label for="floatinInput" aria-disabled="true">{{ nombre }}</label>
+                                                    placeholder="Username" autocomplete="off">
+                                                <label for="floatinInput" aria-disabled="true">Nuevo Nombre</label>
                                             </div>
-                                            <select class="form-select form-select-lg fs-6" name="id" id="selectInput"
-                                                aria-label="Default select example" required>
-                                                <option selected hidden>Categoría = {{ id_categoria }}</option>
+                                            <select class="form-select form-select-lg fs-6" name="id">
+                                                <option selected hidden>Nueva Categoría</option>
                                                 {{#each categoria}}
                                                 <option value="{{id_categoria}}">{{nombre_categoria}}</option>
                                                 {{/each}}
                                             </select>
                                             <div class="form-floating text-start my-3">
                                                 <input type="text" name="presio" class="form-control" id="floatingInput"
-                                                    placeholder="$ " autocomplete="off" required>
-                                                <label for="floatingInput" aria-disabled="true">{{ precio }}</label>
+                                                    placeholder="$ " autocomplete="off">
+                                                <label for="floatingInput" aria-disabled="true">Nuevo Precio</label>
                                             </div>
                                             <div class="text-center ms-2">
-                                                <label class="form-label">Imagen</label>
+                                                <label class="form-label">Nueva Imagen</label>
                                             </div>
                                             <div class="mb-3">
-                                                <input class="form-control" type="file" name="imagen" id="formFile"
-                                                    required>
+                                                <input class="form-control" type="file" name="imagen" id="formFile">
                                             </div>
                                         </div>
-                                        {{/if}} --}}
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Cancelar</button>
-                                            <button type="button" class="btn btn-primary">Guardar</button>
+                                            <button type="button" class="btn btn-success">Guardar</button>
                                         </div>
                                     </div>
                                 </div>
