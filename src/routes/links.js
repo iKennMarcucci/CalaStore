@@ -118,6 +118,7 @@ router.post('/comprar', async (req, res) => {
     for (let i = 0; i < arrayProductos.length; i++) {
         stringxd += '%3A%2A%0D%0A+%E2%80%A2+' + arrayProductos[i].id + '.+' + arrayProductos[i].nombre + '%0D%0A%EF%BF%BD+' + arrayProductos[i].precio + '+COP%0D%0A%2A';
     }
+    const linkWhatsApp = 'https://web.whatsapp.com/send/?phone=573108522391&text=%2AHola%21+quisiera+comprar+estos+productos' + stringxd + 'Yo+soy+' + cliente.nombre + '+y+mis+datos+son%3A%2A+%0D%0A%E2%80%A2+' + cliente.tipo + '+' + cliente.cedula + '%0D%0A%E2%80%A2+' + cliente.nombre + '+' + cliente.apellido + '%0D%0A%E2%80%A2+' + cliente.email + '%0D%0A%E2%80%A2+' + cliente.telefono + '%0D%0A%E2%80%A2+' + cliente.direccion + '&type=phone_number&app_absent=0';
     open('https://web.whatsapp.com/send/?phone=573108522391&text=%2AHola%21+quisiera+comprar+estos+productos' + stringxd + 'Yo+soy+' + cliente.nombre + '+y+mis+datos+son%3A%2A+%0D%0A%E2%80%A2+' + cliente.tipo + '+' + cliente.cedula + '%0D%0A%E2%80%A2+' + cliente.nombre + '+' + cliente.apellido + '%0D%0A%E2%80%A2+' + cliente.email + '%0D%0A%E2%80%A2+' + cliente.telefono + '%0D%0A%E2%80%A2+' + cliente.direccion + '&type=phone_number&app_absent=0');
     var valor = 0;
     var lastIDPedido = await pool.query("SELECT MAX(id_pedido) as IDLAST FROM pedidos");
@@ -131,7 +132,8 @@ router.post('/comprar', async (req, res) => {
     const comprado = true;
     const bool = true;
     valor = valor.toLocaleString("en") + ",000";
-    res.render('links/cart', { comprado, bool, valor, arrayProductos });
+    //res.render('links/cart', { comprado, bool, valor, arrayProductos });
+    res.redirect(oplinkWhatsAppen);
 });
 
 router.get('/cart', (req, res) => {
