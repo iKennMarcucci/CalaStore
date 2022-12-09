@@ -119,15 +119,19 @@ router.post('/comprar', async (req, res) => {
         stringxd += '%3A%2A%0D%0A+%E2%80%A2+' + arrayProductos[i].id + '.+' + arrayProductos[i].nombre + '%0D%0A%EF%BF%BD+' + arrayProductos[i].precio + '+COP%0D%0A%2A';
     }
     open('https://web.whatsapp.com/send/?phone=573108522391&text=%2AHola%21+quisiera+comprar+estos+productos' + stringxd + 'Yo+soy+' + cliente.nombre + '+y+mis+datos+son%3A%2A+%0D%0A%E2%80%A2+' + cliente.tipo + '+' + cliente.cedula + '%0D%0A%E2%80%A2+' + cliente.nombre + '+' + cliente.apellido + '%0D%0A%E2%80%A2+' + cliente.email + '%0D%0A%E2%80%A2+' + cliente.telefono + '%0D%0A%E2%80%A2+' + cliente.direccion + '&type=phone_number&app_absent=0');
-
+    var valor = 0;
     var lastIDPedido = await pool.query("SELECT MAX(id_pedido) as IDLAST FROM pedidos");
     var id_pedidoSUMADO = lastIDPedido[0].IDLAST + 1;
     for (let i = 0; i < arrayProductos.length; i++) {
         console.log(arrayProductos[i].precio);
+        valor += parseInt(arrayProductos[i].precio);
         var presioxd = arrayProductos[i].precio.replace(",", "")
         await pool.query("INSERT INTO pedidos (id_pedido, cedula_cliente, nombre_cliente, telefono_cliente, direccion, id_producto, precio) VALUES (" + id_pedidoSUMADO + ", " + cliente.cedula + ", '" + cliente.nombre + " " + cliente.apellido + "', '" + cliente.telefono + "', '" + cliente.direccion + "', " + arrayProductos[i].id + ", " + presioxd + ")");
     }
-    res.send("HAS COMPLETADO LA COMPRA! Espera a que el dueño se comunique para que pueda procesar la compra.");
+    const comprado = true;
+    const bool = true;
+    valor = valor.toLocaleString("en") + ",000";
+    res.render('links/cart', { comprado, bool, valor, arrayProductos });
 });
 
 router.get('/cart', (req, res) => {

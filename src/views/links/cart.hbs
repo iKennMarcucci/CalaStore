@@ -3,6 +3,14 @@
         <div class="mt-4">
             <h1 class="fw-bold fst-italic">Carrito de Compras</h1>
         </div>
+        {{#if comprado}}
+        <center class="mx-5">
+            <div class="alert alert-success alert-dismissible fade show mx-5 px-5" role="alert">
+                <strong>¡Gracias!</strong> Tus productos serán redirigidos al WhatsApp del CEO de Cala Store.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </center>
+        {{/if}}
         {{#if bool}}
         <div class="row">
             <hr />
@@ -32,7 +40,7 @@
                                                         <div class="counter">
                                                             <span class="down"
                                                                 onClick='decreaseCount(event, this)'>-</span>
-                                                            <input  class="multiply" type="text" value="1" disabled>
+                                                            <input class="multiply" type="text" value="1" disabled>
                                                             <span class="up"
                                                                 onClick='increaseCount(event, this)'>+</span>
                                                         </div>

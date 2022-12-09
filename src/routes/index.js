@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
     const blusas = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 7 AND activo = 1");
     const enterizos = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 8 AND activo = 1");
     console.log(bodys);
-    res.render('links/index', {bodys, croptops, leggingsSM, leggingsLXL, tops, conjuntos, blusas, enterizos});
+    res.render('links/index', { bodys, croptops, leggingsSM, leggingsLXL, tops, conjuntos, blusas, enterizos });
 });
 
 router.post('/links/agregar', async (req, res) => {
@@ -41,32 +41,36 @@ router.post('/links/agregar', async (req, res) => {
 });
 
 router.post('/links/productos', async (req, res) => {
-    var index = true;
-    const categoria = await pool.query("SELECT * FROM categorias");
-    const submitONE = req.body.borrar;
-    const submitTWO = req.body.editar;
-    const IDPedidos = await pool.query("SELECT DISTINCT id_pedido FROM pedidos");
-    var fijos = [];
-    for (let i = 0; i < IDPedidos.length; i++) {
-        var id = IDPedidos[i].id_pedido;
-        fijos[i] = await pool.query("SELECT id_pedido, cedula_cliente, telefono_cliente, direccion FROM pedidos WHERE id_pedido = " + id + " GROUP BY id_pedido");
+    try {
+        var index = true;
+        const categoria = await pool.query("SELECT * FROM categorias");
+        const submitONE = req.body.borrar;
+        const submitTWO = req.body.editar;
+        const IDPedidos = await pool.query("SELECT DISTINCT id_pedido FROM pedidos");
+        var fijos = [];
+        for (let i = 0; i < IDPedidos.length; i++) {
+            var id = IDPedidos[i].id_pedido;
+            fijos[i] = await pool.query("SELECT id_pedido, cedula_cliente, telefono_cliente, direccion FROM pedidos WHERE id_pedido = " + id + " GROUP BY id_pedido");
+        }
+        var productos = [];
+        for (let i = 0; i < fijos.length; i++) {
+            var id = IDPedidos[i].id_pedido;
+            productos[i] = await pool.query("SELECT p.nombre as nombre , o.cantidad_productos as cantidad, o.precio * o.cantidad_productos as total FROM productos p, pedidos o WHERE o.id_pedido = " + id + " and p.id = o.id_producto");
+        }
+        if (submitONE === "Borrar") {
+            await pool.query("DELETE FROM productos WHERE id = " + req.body.selectInput);
+            const listaProducto = await pool.query("SELECT id, nombre FROM productos");
+            res.render('links/admin/adminaccess', { index, fijos, productos, categoria, listaProducto });
+        } else if (submitTWO === "Editar") {
+            const productoAEditar = await pool.query("SELECT * FROM productos WHERE id = " + req.body.selectInput);
+            const listaProducto = await pool.query("SELECT id, nombre FROM productos");
+            res.render('links/admin/adminaccess', { index, fijos, productos, categoria, listaProducto, productoAEditar });
+        }
+    } catch (error) {
+        console.log(error);
+        res.render('links/error');
     }
-    var productos = [];
-    for (let i = 0; i < fijos.length; i++) {
-        var id = IDPedidos[i].id_pedido;
-        productos[i] = await pool.query("SELECT p.nombre as nombre , o.cantidad_productos as cantidad, o.precio * o.cantidad_productos as total FROM productos p, pedidos o WHERE o.id_pedido = " + id + " and p.id = o.id_producto");
-    }
-    if (submitONE === "Borrar") {
-        await pool.query("DELETE FROM productos WHERE id = " + req.body.selectInput);
-        const listaProducto = await pool.query("SELECT id, nombre FROM productos");
-        res.render('links/admin/adminaccess', { index, fijos, productos, categoria, listaProducto });
-    } else if (submitTWO === "Editar") {
-        const productoAEditar = await pool.query("SELECT * FROM productos WHERE id = " + req.body.selectInput);
-        const listaProducto = await pool.query("SELECT id, nombre FROM productos");
-        res.render('links/admin/adminaccess', { index, fijos, productos, categoria, listaProducto, productoAEditar });
-    } else {
-        res.send("ERROR EN EL SERVIDOR, POR FAVOR VUELVE A INICIAR SESIÓN.");
-    }
+
 });
 
 router.post('/links/admin', async (req, res) => {
@@ -98,7 +102,7 @@ router.post('/links/admin', async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-        res.send("Se ha generado un error del servidor.");
+        res.render('links/error');
     }
 });
 
