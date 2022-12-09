@@ -11,17 +11,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                {{#each preguntas}}
                 <div class="card border-success mb-3">
-                    <div class="card-header fw-bold">Pregunta #1: ...</div>
+                    <div class="card-header fw-bold">Pregunta: {{pregunta}}</div>
                     <div class="card-body text-success">
-                        <p class="card-text"><b>Respuesta:</b> blablabla blablabla blablabla blablabla blablabla blablabla.</p>
+                        <p class="card-text"><b>Respuesta: </b>{{respuesta}}</p>
                     </div>
                 </div>
+                {{/each}}
             </div>
-            <form action="">
+            <form action="publicarPregunta" method="post">
                 <div class="modal-footer">
-                    <input class="form-control me-2" name="nombre" type="search" placeholder="¿Tienes una pregunta?"
-                        aria-label="Buscar" autocomplete="off">
+                    <input class="form-control me-2" name="ask" type="search" placeholder="¿Tienes una pregunta?"
+                        aria-label="Pregunta" autocomplete="off">
                     <button type="submit" class="btn btn-outline-primary">Publicar</button>
                 </div>
             </form>

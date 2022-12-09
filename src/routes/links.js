@@ -4,6 +4,9 @@ const pool = require('../database');
 const open = require('open');
 let arrayProductos = [];
 
+// exports.route = function(req, res){
+//     var asd = req.app.locals.preguntas;
+// }
 router.get('/bodies', async (req, res) => {
     const bodys = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 1");
     res.render('links/bodies', { bodys });
@@ -11,13 +14,11 @@ router.get('/bodies', async (req, res) => {
 
 router.get('/croptops', async (req, res) => {
     const croptops = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 2");
-
     res.render('links/croptops', { croptops });
 });
 
 router.get('/legsm', async (req, res) => {
     const leggingsSM = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 3");
-
     res.render('links/legsm', { leggingsSM });
 });
 
@@ -55,7 +56,6 @@ router.get('/index', async (req, res) => {
     const conjuntos = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 6 AND activo = 1");
     const blusas = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 7 AND activo = 1");
     const enterizos = await pool.query("SELECT id, id_categoria, nombre, FORMAT(p.precio,'C3') AS precio, img FROM productos p WHERE id_categoria = 8 AND activo = 1");
-
     res.render('links/index', { bodys, croptops, leggingsSM, leggingsLXL, tops, conjuntos, blusas, enterizos });
 });
 
@@ -124,8 +124,8 @@ router.post('/comprar', async (req, res) => {
     var id_pedidoSUMADO = lastIDPedido[0].IDLAST + 1;
     for (let i = 0; i < arrayProductos.length; i++) {
         console.log(arrayProductos[i].precio);
-        var presioxd = arrayProductos[i].precio.replace(",","")
-        await pool.query("INSERT INTO pedidos (id_pedido, cedula_cliente, nombre_cliente, telefono_cliente, direccion, id_producto, precio) VALUES (" + id_pedidoSUMADO + ", " + cliente.cedula + ", '" + cliente.nombre +" "+cliente.apellido + "', '" + cliente.telefono + "', '" + cliente.direccion + "', " + arrayProductos[i].id + ", " + presioxd + ")");
+        var presioxd = arrayProductos[i].precio.replace(",", "")
+        await pool.query("INSERT INTO pedidos (id_pedido, cedula_cliente, nombre_cliente, telefono_cliente, direccion, id_producto, precio) VALUES (" + id_pedidoSUMADO + ", " + cliente.cedula + ", '" + cliente.nombre + " " + cliente.apellido + "', '" + cliente.telefono + "', '" + cliente.direccion + "', " + arrayProductos[i].id + ", " + presioxd + ")");
     }
     res.send("HAS COMPLETADO LA COMPRA! Espera a que el dueño se comunique para que pueda procesar la compra.");
 });

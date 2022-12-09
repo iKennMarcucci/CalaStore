@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const { engine } = require('express-handlebars');
 const path = require('path');
 const { toNamespacedPath } = require('path');
+const pool = require('./database');
 
 //Initializations
 const app = express();
@@ -25,9 +26,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //Global Variables
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
+    app.locals.preguntas = await pool.query("SELECT pregunta, respuesta FROM preguntas");
     next();
-})
+});
 
 //Routes
 app.use(require('./routes'));
