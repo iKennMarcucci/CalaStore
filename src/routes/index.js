@@ -22,7 +22,9 @@ router.get('/', async (req, res) => {
 router.post('/links/agregar', async (req, res) => {
     var index = true;
     const { name, id, presio, imagen } = req.body;
-    await pool.query("INSERT INTO productos (nombre, id_categoria, precio, img) VALUES ('" + name + "', " + id + ", " + presio + ", '" + imagen + "')");
+    if(Number.isInteger(presio)){
+        await pool.query("INSERT INTO productos (nombre, id_categoria, precio, img) VALUES ('" + name + "', " + id + ", " + presio + ", '" + imagen + "')");
+    }
     const categoria = await pool.query("SELECT * FROM categorias");
     const listaProducto = await pool.query("SELECT id, nombre FROM productos");
     const IDPedidos = await pool.query("SELECT DISTINCT id_pedido FROM pedidos");
