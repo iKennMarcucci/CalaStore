@@ -7,9 +7,9 @@ module.exports = {
         // database: 'calastore'
 
         // PARA HOSTEO
-        host: 'us-cdbr-east-06.cleardb.net',
-        user: 'b4fefa2abeb128',
-        password: 'f9bb601b',
-        database: 'heroku_5a82b2f600dc2ce'
+        host: 'mysql-calastoredb.alwaysdata.net',
+        user: '310578',
+        password: 'calastore',
+        database: 'calastoredb_database' 
     }
 }
